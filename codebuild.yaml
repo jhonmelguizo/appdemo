@@ -4,7 +4,7 @@ steps:
     args: ['clone', 'https://github.com/jhonmelguizo/appdemo', 'mi-proyecto']
 
   # Ejecuta el script de compilación para generar el archivo JAR
-  - name: 'gcr.io/cloud-builders/custom:latest'
+  - name: 'gcr.io/cloud-builders/custom:1'
     args: ['sh', 'src/build.sh']
 
   # Crea la imagen Docker
