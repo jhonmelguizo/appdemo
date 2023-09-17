@@ -1,7 +1,7 @@
 steps:
-  # Elimina el directorio 'src' si existe
+  # Elimina el directorio 'src' si existe utilizando gsutil
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rm', '-r', 'src']
+    args: ['-m', 'rm', '-r', 'gs://codebuild-compilaciones/appdemo/src']
   # Clona tu repositorio de GitHub
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/jhonmelguizo/appdemo', 'src']
