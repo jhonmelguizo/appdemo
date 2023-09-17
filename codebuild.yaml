@@ -1,5 +1,5 @@
 steps:
-  # Clonar el repositorio de código desde GitHub
+  # Clonar el repositorio de código desde GitHub1
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/jhonmelguizo/appdemo', 'mi-proyecto']
     
