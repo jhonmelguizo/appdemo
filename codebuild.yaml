@@ -5,7 +5,7 @@ steps:
     
   # Obtener el valor de $COMMIT_SHA
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['source', 'repos', 'describe', 'appdemo', '--format', 'value(headSha)']
+    args: ['source', 'repos', 'describe', 'app-demo', '--format', 'value(headSha)']
     id: get_commit_sha
     
   # Construir la imagen de Docker usando la etiqueta dinámica
