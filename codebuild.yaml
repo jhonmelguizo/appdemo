@@ -10,13 +10,13 @@ steps:
     
   # Construir la imagen de Docker usando la etiqueta dinámica
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/pr1-jamc-gcp/app-demo/appdemo:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/app-demo/appdemo:$COMMIT_SHA', '.']
     dir: 'mi-proyecto'
     
   # Push de la imagen a Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/pr1-jamc-gcp/app-demo/appdemo:$COMMIT_SHA']
+    args: ['push', 'gcr.io/app-demo/appdemo:$COMMIT_SHA']
 
 images:
   # Registrar la imagen en Container Registry
-  - 'gcr.io/pr1-jamc-gcp/app-demo/appdemo:$COMMIT_SHA'
+  - 'gcr.io/app-demo/appdemo:$COMMIT_SHA'
