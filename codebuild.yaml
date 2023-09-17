@@ -1,24 +1,4 @@
 steps:
-  # Clona tu repositorio de GitHub en un directorio diferente
-  - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/jhonmelguizo/appdemo', 'mi-proyecto']
-
-  # Ejecuta el script de compilación para generar el archivo JAR
-  - name: 'gcr.io/cloud-builders/custom'
-    args: ['sh', 'src/build.sh']
-
-  # Crea la imagen Docker
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/jhonmelguizo/appdemo:$COMMIT_SHA', '.']
-
-images:
-  # Registra la imagen en Container Registry
-  - 'gcr.io/jhonmelguizo/appdemo:$COMMIT_SHA'
-  
-  
-
-
-steps:
   # Clonar el repositorio de código desde GitHub
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/jhonmelguizo/appdemo', '/workspace']
