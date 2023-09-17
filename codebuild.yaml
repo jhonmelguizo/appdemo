@@ -3,7 +3,7 @@ steps:
     args: ['clone', 'https://github.com/jhonmelguizo/appdemo', '/descargas']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/[TU_PROYECTO]/[NOMBRE_IMAGEN]:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/pry1-jamc-gcp/appdemo:$COMMIT_SHA', '.']
     dir: '/workspace/mi-proyecto'
 
 images:
