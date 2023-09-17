@@ -1,7 +1,7 @@
 steps:
   # Clonar el repositorio de código desde GitHub
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/jhonmelguizo/appdemo', '/workspace']
+    args: ['clone', 'https://github.com/jhonmelguizo/appdemo', 'mi-proyecto']
     
   # Obtener el valor de $COMMIT_SHA
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -11,7 +11,7 @@ steps:
   # Construir la imagen de Docker usando la etiqueta dinámica
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/pr1-jamc-gcp/app-demo/appdemo:$COMMIT_SHA', '.']
-    dir: '/workspace'
+    dir: 'mi-proyecto'
     
   # Push de la imagen a Container Registry
   - name: 'gcr.io/cloud-builders/docker'
