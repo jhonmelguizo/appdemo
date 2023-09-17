@@ -1,11 +1,10 @@
 steps:
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/jhonmelguizo/appdemo', '/workspace']
+    args: ['clone', 'https://github.com/jhonmelguizo/appdemo', '/descargas']
 
-    - name: 'gcr.io/cloud-builders/docker'
-      args: ['build', '-t', 'gcr.io/[TU_PROYECTO]/[NOMBRE_IMAGEN]:$COMMIT_SHA', '.']
-      dir: '/workspace/mi-proyecto'
-
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/[TU_PROYECTO]/[NOMBRE_IMAGEN]:$COMMIT_SHA', '.']
+    dir: '/workspace/mi-proyecto'
 
 images:
   - 'gcr.io/pry1-jamc-gcp/appdemo:$COMMIT_SHA'
