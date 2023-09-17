@@ -4,13 +4,13 @@ steps:
     args: ['clone', 'https://github.com/jhonmelguizo/appdemo', 'mi-proyecto']
         
   # Ejecuta el script de compilación para generar el archivo JAR
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/custom'
     args: ['sh', 'src/build.sh']
     
   # Push de la imagen a Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/pr1-jamc-gcp/app-demo/appdemo:latest']
+    args: ['push', 'gcr.io/pr1-jamc-gcp/app-demo/appdemo:$COMMIT_SHA']
 
 images:
   # Registrar la imagen en Container Registry
-  - 'gcr.io/pr1-jamc-gcp/app-demo/appdemo:latest'
+  - 'gcr.io/pr1-jamc-gcp/app-demo/appdemo:$COMMIT_SHA'
