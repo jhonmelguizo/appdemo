@@ -1,10 +1,7 @@
 steps:
-  # Elimina el directorio 'src' si existe utilizando gsutil
-  - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rm', '-r', 'gs://codebuild-compilaciones/appdemo/src']
-  # Clona tu repositorio de GitHub
+  # Clona tu repositorio de GitHub en un directorio diferente
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/jhonmelguizo/appdemo', 'src']
+    args: ['clone', 'https://github.com/jhonmelguizo/appdemo', 'mi-proyecto']
 
   # Ejecuta el script de compilación para generar el archivo JAR
   - name: 'gcr.io/cloud-builders/custom'
