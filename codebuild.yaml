@@ -3,8 +3,14 @@ steps:
     args: ['clone', 'https://github.com/jhonmelguizo/appdemo', '/workspace/mi-proyecto']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/pry1-jamc-gcp/appdemo:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/pry1-jamc-gcp/app-demo/appdemo:$COMMIT_SHA', '.']
     dir: '/workspace/mi-proyecto'
 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['auth', 'configure-docker', 'us-central1-docker.pkg.dev']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/pry1-jamc-gcp/app-demo/appdemo:$COMMIT_SHA']
+
 images:
-  - 'gcr.io/pry1-jamc-gcp/appdemo:$COMMIT_SHA'
+  - 'us-central1-docker.pkg.dev/pry1-jamc-gcp/app-demo/appdemo:$COMMIT_SHA'
