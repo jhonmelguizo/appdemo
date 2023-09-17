@@ -3,10 +3,9 @@ steps:
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/jhonmelguizo/appdemo', 'mi-proyecto']
         
-  # Construir la imagen de Docker usando la etiqueta dinámica
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/pr1-jamc-gcp/app-demo/appdemo:latest', '.']
-    dir: 'mi-proyecto'
+  # Ejecuta el script de compilación para generar el archivo JAR
+  - name: 'gcr.io/cloud-builders/custom'
+    args: ['sh', 'src/build.sh']
     
   # Push de la imagen a Container Registry
   - name: 'gcr.io/cloud-builders/docker'
