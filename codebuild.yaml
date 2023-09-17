@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/jhonmelguizo/appdemo', '/']
+    args: ['clone', 'https://github.com/jhonmelguizo/appdemo', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
@@ -8,7 +8,7 @@ steps:
       - '-t'
       - 'gcr.io/pry1-jamc-gcp/appdemo:$COMMIT_SHA'
       - '.'
-    dir: '/'
+    dir: '.'
 
 images:
   - 'gcr.io/pry1-jamc-gcp/appdemo:$COMMIT_SHA'
