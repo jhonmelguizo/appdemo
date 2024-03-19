@@ -1,0 +1,13 @@
+version: '3'
+services:
+  img_appdemo:
+    image: img_appdemo:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:8080
+    container_name: appdemo
+    mem_limit: 512m  # Establece el límite de memoria a 512 megabytes
+    cpu_quota: 70000  # Limita el uso de CPU al 70%
+    restart: always  # Reinicia el contenedor automáticamente si falla o se detiene
