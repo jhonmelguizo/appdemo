@@ -109,13 +109,17 @@ public class ClienteController {
 	}
 	
 	private String getServerIpAddress() {
-        String ipAddress;
-        try {
-            ipAddress = InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            ipAddress = "No se pudo obtener la dirección IP del servidor";
-        }
-        return ipAddress;
-    }
+	    String ipAddress;
+	    try {
+	        // Para obtener la dirección IP de la máquina host en un entorno Docker
+	        ipAddress = InetAddress.getByName("host.docker.internal").getHostAddress();
+	        //System.out.println("Dirección IP del servidor: " + ipAddress);  // Imprime la dirección IP en la consola
+	    } catch (UnknownHostException e) {
+	        ipAddress = "No se pudo obtener la dirección IP del servidor";
+	        //System.out.println("Error al obtener la dirección IP del servidor: " + e.getMessage());  // Imprime el error en la consola
+	    }
+	    return ipAddress;
+	}
+
 	
 }
