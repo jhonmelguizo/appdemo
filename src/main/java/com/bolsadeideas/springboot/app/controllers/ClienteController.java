@@ -34,8 +34,6 @@ public class ClienteController {
 	@Autowired
 	private IClienteService clienteService;
 	
-	@Autowired
-    private Environment environment;
 
 	@RequestMapping(value = {"/", "","/listar"}, method = RequestMethod.GET)
 	public String listar(@RequestParam(name="page", defaultValue="0") int page, Model model) {
@@ -48,7 +46,7 @@ public class ClienteController {
 		model.addAttribute("titulo", "Listado de clientes");
 		model.addAttribute("clientes", clientes);
 		model.addAttribute("page", pageRender);
-		model.addAttribute("ipAddress", getServerIpAddress());
+		model.addAttribute("infoServer", getInfoServer());
 		return "listar";
 	}
 
@@ -58,7 +56,7 @@ public class ClienteController {
 		Cliente cliente = new Cliente();
 		model.put("cliente", cliente);
 		model.put("titulo", "Formulario de Cliente");
-		((Model) model).addAttribute("ipAddress", getServerIpAddress());
+		((Model) model).addAttribute("infoServer", getInfoServer());
 		return "form";
 	}
 
@@ -79,7 +77,7 @@ public class ClienteController {
 		}
 		model.put("cliente", cliente);
 		model.put("titulo", "Editar Cliente");
-		((Model) model).addAttribute("ipAddress", getServerIpAddress());
+		((Model) model).addAttribute("infoServer", getInfoServer());
 		return "form";
 	}
 
@@ -94,7 +92,7 @@ public class ClienteController {
 		clienteService.save(cliente);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
-		model.addAttribute("ipAddress", getServerIpAddress());
+		model.addAttribute("infoServer", getInfoServer());
 		return "redirect:listar";
 	}
 
@@ -108,18 +106,17 @@ public class ClienteController {
 		return "redirect:/listar";
 	}
 	
-	private String getServerIpAddress() {
-	    String ipAddress;
-	    try {
-	        // Para obtener la dirección IP de la máquina host en un entorno Docker
-	        ipAddress = InetAddress.getByName("host.docker.internal").getHostAddress();
-	        //System.out.println("Dirección IP del servidor: " + ipAddress);  // Imprime la dirección IP en la consola
-	    } catch (UnknownHostException e) {
-	        ipAddress = "No se pudo obtener la dirección IP del servidor";
-	        //System.out.println("Error al obtener la dirección IP del servidor: " + e.getMessage());  // Imprime el error en la consola
-	    }
-	    return ipAddress;
-	}
-
+	private String getInfoServer() {
+        String ipAddress;
+        String hostname;
+        try {
+            ipAddress = InetAddress.getLocalHost().getHostAddress();
+            hostname = InetAddress.getLocalHost().getHostName();
+        } catch (UnknownHostException e) {
+            ipAddress = "No se pudo obtener la dirección IP del servidor";
+            hostname = "No se pudo obtener el host del server";
+        }
+        return ipAddress + " - " + hostname;
+    }
 	
 }
